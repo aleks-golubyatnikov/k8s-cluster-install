@@ -6,4 +6,4 @@ az vm extension set \
   --name CustomScript \
   --vm-name vm-k8s-admin-server \
   --resource-group RG-k8s-cluster \
-  --settings '{"commandToExecute":"bash /home/init-cluster/admin-scripts/install.sh"}'
+  --settings '{"commandToExecute":"cd /home/init-cluster/admin-scripts && bash ./install.sh"}'
