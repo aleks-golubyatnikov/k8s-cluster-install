@@ -3,4 +3,4 @@
   tasks:
     - name: install Docker
       become: yes
-      script: ../admin-scripts.sh
+      script: ../admin-scripts/docker-install.sh
