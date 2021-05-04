@@ -1,0 +1,7 @@
+- hosts: all
+  become: yes
+  tasks:
+    - name: letting iptables see bridged traffic
+      become: yes
+      shell: modprobe br_netfilter
+
