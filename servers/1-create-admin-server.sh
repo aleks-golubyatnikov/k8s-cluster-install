@@ -7,7 +7,7 @@
 #      - 2x CPU;
 #      - 2GB RAM;
 #    - admin-server:
-#      - 2x CPU;
+#      - 1x CPU;
 #      - 2GB RAM;
 #  -- OS requirements:
 #     - UbuntuLTS 18.04 or higher
@@ -17,7 +17,7 @@
 #       - worker server #1: vm-k8s-worker-01 [10.0.1.11];
 #       - worker server #2: vm-k8s-worker-02 [10.0.1.12];
 #     - admin server: vm-k8s-admin-server [10.0.1.100];
-#
+
 az group create \
 --name RG-k8s-cluster \
 --location centralus
@@ -67,45 +67,6 @@ az network nsg rule create \
 
 az network nsg rule create \
   --resource-group RG-k8s-cluster \
-  --name NSG-ADMIN-SERVER-ALLOW-TCP-2379 \
-  --nsg-name NSG-ADMIN-SERVER \
-  --protocol tcp \
-  --direction inbound \
-  --source-address-prefix '*' \
-  --source-port-range '*' \
-  --destination-address-prefix 'VirtualNetwork' \
-  --destination-port-range 2379 \
-  --access allow \
-  --priority 220
-
-az network nsg rule create \
-  --resource-group RG-k8s-cluster \
-  --name NSG-ADMIN-SERVER-ALLOW-TCP-10250 \
-  --nsg-name NSG-ADMIN-SERVER \
-  --protocol tcp \
-  --direction inbound \
-  --source-address-prefix '*' \
-  --source-port-range '*' \
-  --destination-address-prefix 'VirtualNetwork' \
-  --destination-port-range 10250 \
-  --access allow \
-  --priority 230
-
-az network nsg rule create \
-  --resource-group RG-k8s-cluster \
-  --name NSG-ADMIN-SERVER-ALLOW-TCP-10251 \
-  --nsg-name NSG-ADMIN-SERVER \
-  --protocol tcp \
-  --direction inbound \
-  --source-address-prefix '*' \
-  --source-port-range '*' \
-  --destination-address-prefix 'VirtualNetwork' \
-  --destination-port-range 10251 \
-  --access allow \
-  --priority 240
-
-az network nsg rule create \
-  --resource-group RG-k8s-cluster \
   --name NSG-ADMIN-SERVER-ALLOW-TCP-6443 \
   --nsg-name NSG-ADMIN-SERVER \
   --protocol tcp \
@@ -147,4 +108,4 @@ az vm extension set \
   --name CustomScript \
   --vm-name vm-k8s-admin-server \
   --resource-group RG-k8s-cluster \
-  --settings '{"commandToExecute":"apt -y update && apt -y install ansible && mkdir -m 0755 /home/init-cluster && git clone https://github.com/aleks-golubyatnikov/k8s-cluster-install.git /home/init-cluster && chmod 0755 -R /home/init-cluster && bash /home/init-cluster/admin-acripts/install.sh"}'
+  --settings '{"commandToExecute":"apt -y update && apt -y install ansible && mkdir -m 0755 /home/init-cluster && git clone https://github.com/aleks-golubyatnikov/k8s-cluster-install.git /home/init-cluster && chmod 0755 -R /home/init-cluster && bash /home/init-cluster/admin-scripts/install.sh"}'
