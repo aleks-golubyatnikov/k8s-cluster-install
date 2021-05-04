@@ -121,7 +121,7 @@ az vm extension set \
   --name CustomScript \
   --vm-name vm-k8s-master-01 \
   --resource-group RG-k8s-cluster \
-  --settings '{"commandToExecute":"apt -y update && apt -y install apache2 && echo k8s: vm-k8s-master-01 > /var/www/html/index.html"}'
+  --settings '{"commandToExecute":"apt-get -y update && apt-get -y install apache2 && echo k8s: vm-k8s-master-01 > /var/www/html/index.html"}'
 
 
 # vm-k8s-worker-01
@@ -187,7 +187,7 @@ az vm extension set \
   --name CustomScript \
   --vm-name vm-k8s-worker-01 \
   --resource-group RG-k8s-cluster \
-  --settings '{"commandToExecute":"apt -y update && apt -y install apache2 && echo k8s: vm-k8s-worker-01 > /var/www/html/index.html"}'
+  --settings '{"commandToExecute":"apt-get -y update && apt-get -y install apache2 && echo k8s: vm-k8s-worker-01 > /var/www/html/index.html"}'
 
 
 # vm-k8s-worker-02
