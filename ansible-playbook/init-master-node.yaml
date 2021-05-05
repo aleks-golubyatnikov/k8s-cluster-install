@@ -1,0 +1,42 @@
+- hosts: master
+  become: yes
+  tasks:
+    - name: enable docker service
+      service: 
+         name: docker.service
+         enabled: yes 
+      
+    - name: initialize the cluster
+      shell: kubeadm init --pod-network-cidr 10.244.0.0/16 --apiserver-advertise-address=10.0.1.10 --ignore-preflight-errors all >> init-master-node.log
+      args:
+        chdir: /home/ubuntu
+        creates: init-master-node.log
+    
+    - name: create .kube directory
+      become: yes
+      become_user: ubuntu
+      file:
+        path: $HOME/.kube
+        state: directory
+        mode: 0755
+
+    - name: copy admin.conf to user's kube config
+      copy:
+        src: /etc/kubernetes/admin.conf
+        dest: /home/ubuntu/.kube/config
+        remote_src: yes
+        owner: ubuntu
+
+    - name: install Pod network
+      become: yes
+      become_user: ubuntu
+      shell: kubectl apply -f kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')" >> pod-network-setup.log
+      args:
+        chdir: /home/ubuntu
+        creates: pod-network-setup.log
+
+    - name: set KUBECONFIG
+      shell: export KUBECONFIG=/etc/kubernetes/admin.conf && echo "export KUBECONFIG=/etc/kubernetes/admin.conf" >> kubeconfig.log
+      args:
+        chdir: /home/ubuntu
+        creates: kubeconfig.log
