@@ -6,5 +6,5 @@ ansible-playbook -i ../ansible-playbook/hosts ../ansible-playbook/iptables.yaml 
 ansible-playbook -i ../ansible-playbook/hosts ../ansible-playbook/docker.yaml >> install-docker.log
 ansible-playbook -i ../ansible-playbook/hosts ../ansible-playbook/kubeadm.yaml >> install-kubeadm.log
 
-#ansible-playbook -i ../ansible-playbook/hosts ../ansible-playbook/init-cluster.yaml >> init-cluster.log
+#ansible-playbook -i ../ansible-playbook/hosts ../ansible-playbook/init-master-node.yaml >> init-master-node.log
 
