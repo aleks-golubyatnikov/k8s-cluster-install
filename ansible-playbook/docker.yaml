@@ -6,4 +6,5 @@
       script: ../admin-scripts/docker-install.sh
     
     - name: allow 'golubyatnikov' to have access to Docker
+      become: yes  
       shell: usermod -aG docker golubyatnikov
