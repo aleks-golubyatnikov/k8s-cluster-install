@@ -1,0 +1,6 @@
+- hosts: all
+  become: yes
+  tasks:
+    - name: install Kubeadm
+      become: yes
+      script: ../admin-scripts/kubeadm-install.sh
