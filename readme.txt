@@ -15,6 +15,3 @@
 #       - worker server #1: vm-k8s-worker-01 [10.0.1.11];
 #       - worker server #2: vm-k8s-worker-02 [10.0.1.12];
 #     - admin server: vm-k8s-admin-server [10.0.1.100];
-
-
-1. After setup login as ubuntu: sudo su ubuntu 
