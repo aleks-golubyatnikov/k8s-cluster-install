@@ -7,7 +7,7 @@
          enabled: yes 
       
     - name: initialize the cluster
-      shell: kubeadm init --pod-network-cidr 10.244.0.0/16 --apiserver-advertise-address=10.0.1.10 --ignore-preflight-errors all >> init-master-node.log
+      shell: kubeadm init --pod-network-cidr 10.244.0.0/16 --apiserver-advertise-address=10.0.1.10 >> init-master-node.log
       args:
         chdir: /home/ubuntu
         creates: init-master-node.log
