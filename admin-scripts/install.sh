@@ -7,4 +7,4 @@ ansible-playbook -i ../ansible-playbook/hosts ../ansible-playbook/docker.yaml >>
 ansible-playbook -i ../ansible-playbook/hosts ../ansible-playbook/kubeadm.yaml >> install-kubeadm.log
 
 #ansible-playbook -i ../ansible-playbook/hosts ../ansible-playbook/init-master-node.yaml >> init-master-node.log
-
+#ansible-playbook -i ../ansible-playbook/hosts ../ansible-playbook/join-worker-node.yaml >> join-worker-node.log
