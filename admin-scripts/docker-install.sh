@@ -10,6 +10,7 @@ apt-get -y install \
     gnupg \
     lsb-release
 
+rm -rf /usr/share/keyrings/docker-archive-keyring.gpg
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 
  echo \
