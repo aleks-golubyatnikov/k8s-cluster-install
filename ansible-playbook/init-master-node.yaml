@@ -40,3 +40,12 @@
       args:
         chdir: /home/ubuntu
         creates: kubeconfig.log
+    
+    - name: copy admin.conf to user's [golubyatnikov] kube config
+      copy:
+        src: /etc/kubernetes/admin.conf
+        dest: /home/golubyatnikov/.kube/config
+        remote_src: yes
+        owner: ubuntu
+
+        
