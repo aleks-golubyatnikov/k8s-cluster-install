@@ -97,7 +97,7 @@ az vm create \
   --resource-group RG-k8s-cluster \
   --name vm-k8s-admin-server \
   --admin-username golubyatnikov \
-  --admin-password Upgrade-2035UP \
+  --admin-password passw0rd \
   --image UbuntuLTS \
   --nics admin-server-NIC \
   --size Standard_B1ms \
